@@ -1,16 +1,8 @@
 import type { NextPage } from 'next';
-import { useState } from 'react';
-import EditorManager from '../components/EditorManager';
-import IFrameDisplay from '../components/IFrameDisplay';
+import EditorAndIFrame from '../components/EditorAndIFrame';
 
 const Home: NextPage = () => {
-  const [src, setSrc] = useState('');
-  return (
-    <>
-      <EditorManager setSrcDocument={setSrc} />
-      <IFrameDisplay srcDocument={src} />
-    </>
-  );
+  return <EditorAndIFrame initialHTML="" initialCSS="" initialJS="" />;
 };
 
 export default Home;

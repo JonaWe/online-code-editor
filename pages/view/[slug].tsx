@@ -1,5 +1,6 @@
 import { ObjectId } from 'bson';
 import type { GetServerSideProps } from 'next';
+import EditorAndIFrame from '../../components/EditorAndIFrame';
 import IFrameDisplay from '../../components/IFrameDisplay';
 import clientPromise from '../../lib/mongodb';
 
@@ -21,9 +22,11 @@ const Page: React.FC<Props> = ({ htmlSrc, cssSrc, jsSrc, title, created }) => {
   const displayDate = creationDate.toLocaleDateString(undefined, options);
   return (
     <>
-      <h1>{title}</h1>
-      <h2>{displayDate}</h2>
-      <IFrameDisplay htmlSrc={htmlSrc} cssSrc={cssSrc} jsSrc={jsSrc} />
+      <EditorAndIFrame
+        initialHTML={htmlSrc}
+        initialCSS={cssSrc}
+        initialJS={jsSrc}
+      />
     </>
   );
 };

@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { Language } from '../Editor/Editor';
+import { Language } from '../CoreEditor/CoreEditor';
 import { Bar, EditorTab } from './EditorBar.elements';
 
 interface EditorBarProps {

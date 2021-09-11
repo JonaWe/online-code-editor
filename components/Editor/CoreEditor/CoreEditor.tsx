@@ -14,13 +14,13 @@ if (typeof navigator !== 'undefined') {
 
 export type Language = 'xml' | 'javascript' | 'css';
 
-interface EditorProps {
+interface CoreEditorProps {
   language: Language;
   value: string;
   onChange(value: string): void;
 }
 
-const Editor = ({ language, value, onChange }: EditorProps) => {
+const CoreEditor = ({ language, value, onChange }: CoreEditorProps) => {
   const handleChange = (editor: any, data: any, value: string) => {
     onChange(value);
   };
@@ -40,4 +40,4 @@ const Editor = ({ language, value, onChange }: EditorProps) => {
   );
 };
 
-export default Editor;
+export default CoreEditor;
