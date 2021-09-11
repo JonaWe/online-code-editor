@@ -10,12 +10,12 @@ if (typeof navigator !== 'undefined') {
   require('codemirror/mode/xml/xml');
   require('codemirror/mode/css/css');
   require('codemirror/mode/javascript/javascript');
-  // require('codemirror/lib/codemirror.css');
-  // require('codemirror/theme/material.css');
 }
 
+export type Language = 'xml' | 'javascript' | 'css';
+
 interface EditorProps {
-  language: 'xml' | 'javascript' | 'css';
+  language: Language;
   value: string;
   onChange(value: string): void;
 }

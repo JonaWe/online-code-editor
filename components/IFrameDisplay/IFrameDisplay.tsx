@@ -5,19 +5,10 @@ const IFrame = styled.iframe`
 `;
 
 interface IFrameDisplayProps {
-  htmlSrc: string;
-  cssSrc: string;
-  jsSrc: string;
+  srcDocument: string;
 }
 
-const IFrameDisplay = ({ htmlSrc, cssSrc, jsSrc }: IFrameDisplayProps) => {
-  const srcDocument = `
-    <html>
-      <style> ${cssSrc} </style>
-      <body>${htmlSrc}</body>
-      <script>${jsSrc}</script>
-    </html>
-  `;
+const IFrameDisplay = ({ srcDocument }: IFrameDisplayProps) => {
   return (
     <IFrame
       srcDoc={srcDocument}
