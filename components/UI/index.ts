@@ -15,7 +15,7 @@ export const Button = styled.button<ButtonProps>`
   background-color: ${(props) =>
     props.primary ? props.theme.colors.bgPrimary : props.theme.colors.bgMedium};
 
-  box-shadow: 5px 3px 4px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 5px 3px 5px 0 rgba(0, 0, 0, 0.1);
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
 
   &:hover {
