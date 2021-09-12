@@ -7,6 +7,7 @@ declare module 'styled-components' {
       bgMedium: string;
       bgDark: string;
       bgBlack: string;
+      bgPrimary: string;
       fcPrimary: string;
     };
   }
