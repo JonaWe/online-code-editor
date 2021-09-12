@@ -1,6 +1,6 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, FormEvent, SetStateAction } from 'react';
 import { Button } from '../UI';
-import { PopupWrapper, StyledPopup } from './SharePopup.elements';
+import { ButtonRow, PopupWrapper, StyledPopup } from './SharePopup.elements';
 
 interface SharePopupProps {
   title: string;
@@ -9,17 +9,35 @@ interface SharePopupProps {
 }
 
 const SharePopup = ({ title, setTitle, shareButton }: SharePopupProps) => {
-  const shareHandler = () => console.log('share');
+  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log('share');
+  };
   return (
     <StyledPopup modal trigger={shareButton}>
       {(close: any) => (
         <PopupWrapper>
-          <p>Content</p>
-          <Button onClick={close}>Close</Button>
-
-          <Button primary onClick={shareHandler}>
-            Share
-          </Button>
+          <h2>Share this editor</h2>
+          <form onSubmit={submitHandler}>
+            <label htmlFor="title">
+              Titel
+              <input
+                id="title"
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                maxLength={32}
+                minLength={3}
+                required
+              />
+            </label>
+            <ButtonRow>
+              <Button onClick={close}>Close</Button>
+              <Button primary type="submit">
+                Share
+              </Button>
+            </ButtonRow>
+          </form>
         </PopupWrapper>
       )}
       {/* <div style={{ background: 'red' }}>Hey</div> */}
