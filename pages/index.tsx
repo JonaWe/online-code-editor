@@ -1,8 +1,15 @@
 import type { NextPage } from 'next';
-import EditorAndIFrame from '../components/EditorAndIFrame';
+import Controller from '../components/Controller';
 
 const Home: NextPage = () => {
-  return <EditorAndIFrame initialHTML="" initialCSS="" initialJS="" />;
+  return (
+    <Controller
+      initialHTML=""
+      initialCSS=""
+      initialJS=""
+      initialTitle="Unknown Document"
+    />
+  );
 };
 
 export default Home;

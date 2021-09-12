@@ -1,14 +1,25 @@
-import styled from 'styled-components';
+import { useEffect, useState } from 'react';
+import { useEditorDocumentContext } from '../../context/editor-document-context';
+import { IFrame } from './IFrameDisplay.elements';
 
-const IFrame = styled.iframe`
-  border: 0;
-`;
+const IFrameDisplay = () => {
+  const [srcDocument, setSrcDocument] = useState('');
 
-interface IFrameDisplayProps {
-  srcDocument: string;
-}
+  const { html, css, js } = useEditorDocumentContext();
 
-const IFrameDisplay = ({ srcDocument }: IFrameDisplayProps) => {
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setSrcDocument(`
+    <html>
+      <style>${css}</style>
+      <body>${html}</body>
+      <script>${js}</script>
+    </html>
+  `);
+    }, 350);
+    return () => clearTimeout(timeout);
+  }, [html, css, js]);
+
   return (
     <IFrame
       srcDoc={srcDocument}
