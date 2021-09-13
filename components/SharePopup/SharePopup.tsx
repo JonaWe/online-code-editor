@@ -24,6 +24,7 @@ const SharePopup = ({ title, setTitle, shareButton }: SharePopupProps) => {
   const submitHandler = (close: any) => {
     return async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
+      if (successful !== undefined) return;
       const response = await fetch('/api/addDocument', {
         method: 'POST',
         headers: {
