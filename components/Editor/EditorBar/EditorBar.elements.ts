@@ -4,9 +4,8 @@ export const Bar = styled.div`
   background-color: ${(props) => props.theme.colors.bgBlack};
   display: flex;
   gap: 0.125em;
-  padding: 0.25em 0.125em 0 0.125em;
+  padding: 0.25em 0 0 0;
   @media screen and (max-width: 768px) {
-    padding: 0.25em 0 0 0;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
   }

@@ -7,11 +7,6 @@ export const Bar = styled.div`
   padding: 0.5em 0.5em 0 0.5em;
   justify-content: space-between;
   align-items: center;
-  /* @media screen and (max-width: 768px) {
-    padding: 0.25em 0 0 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-  } */
 `;
 
 export const Title = styled.h1`
