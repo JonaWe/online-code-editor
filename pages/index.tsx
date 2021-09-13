@@ -4,9 +4,9 @@ import Controller from '../components/Controller';
 const Home: NextPage = () => {
   return (
     <Controller
-      initialHTML=""
-      initialCSS=""
-      initialJS=""
+      initialHTML="<!-- Add your HTML content here -->"
+      initialCSS="/* Add your CSS content here */"
+      initialJS="// Add your JS content here"
       initialTitle="Unknown Document"
     />
   );
