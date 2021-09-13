@@ -9,6 +9,10 @@ declare module 'styled-components' {
       bgBlack: string;
       bgPrimary: string;
       fcPrimary: string;
+      bgError: string;
+      bgErrorBorder: string;
+      bgSuccessful: string;
+      bgSuccessfulBorder: string;
     };
   }
 }

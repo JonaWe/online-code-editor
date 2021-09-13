@@ -2,7 +2,12 @@ import { useRouter } from 'next/router';
 import { Dispatch, FormEvent, SetStateAction, useState } from 'react';
 import { useEditorDocumentContext } from '../../context/editor-document-context';
 import { Button } from '../UI';
-import { ButtonRow, PopupWrapper, StyledPopup } from './SharePopup.elements';
+import {
+  ButtonRow,
+  InfoMessage,
+  PopupWrapper,
+  StyledPopup,
+} from './SharePopup.elements';
 
 interface SharePopupProps {
   title: string;
@@ -35,12 +40,23 @@ const SharePopup = ({ title, setTitle, shareButton }: SharePopupProps) => {
       } else {
         setSuccessful(true);
         const { id } = result;
-        setTimeout(() => {
+
+        // copy share url to clipboard
+        const location = window.location;
+        const shareUrl = `${location.protocol}//${location.host}/${
+          location.pathname.split('/')[0]
+        }view/${id}`;
+        await navigator.clipboard.writeText(shareUrl);
+
+        // switch to the new url
+        router.push(`/view/${id}`);
+
+        setTimeout(async () => {
+          // reset everything back to the initial state
           close();
           setSuccessful(undefined);
           setErrorMessage('');
-          router.push(`/view/${id}`);
-        }, 5000);
+        }, 3000);
       }
     };
   };
@@ -49,12 +65,14 @@ const SharePopup = ({ title, setTitle, shareButton }: SharePopupProps) => {
 
   if (successful === true) {
     infoMessage = (
-      <span>
-        Successful! You will be automatically redirected in five seconds.
-      </span>
+      <InfoMessage type="SUCCESSFUL">
+        Successful! Link copied to clipboard.
+      </InfoMessage>
     );
   } else if (successful === false) {
-    infoMessage = <span>Failed: {errorMessage}</span>;
+    infoMessage = (
+      <InfoMessage type="ERROR">Error: {errorMessage}!</InfoMessage>
+    );
   }
 
   return (
