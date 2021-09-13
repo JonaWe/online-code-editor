@@ -3,6 +3,7 @@ import { EditorDocumentContextProvider } from '../../context/editor-document-con
 import EditorManager from '../Editor/EditorManager';
 import IFrameDisplay from '../IFrameDisplay';
 import TopBar from '../TopBar';
+import { Wrapper } from './Controller.elements';
 
 interface ControllerProps {
   initialHTML: string;
@@ -20,9 +21,11 @@ const Controller = (props: ControllerProps) => {
     <EditorDocumentContextProvider
       value={{ html, setHtml, css, setCss, js, setJs }}
     >
-      <TopBar initialTitle={props.initialTitle} />
-      <EditorManager />
-      <IFrameDisplay />
+      <Wrapper>
+        <TopBar initialTitle={props.initialTitle} />
+        <EditorManager />
+        <IFrameDisplay />
+      </Wrapper>
     </EditorDocumentContextProvider>
   );
 };

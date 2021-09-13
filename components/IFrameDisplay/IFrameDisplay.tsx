@@ -22,6 +22,7 @@ const IFrameDisplay = () => {
 
   return (
     <IFrame
+      title="Output"
       srcDoc={srcDocument}
       sandbox="allow-scripts"
       width="100%"

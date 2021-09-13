@@ -1,10 +1,6 @@
 import { Controlled } from 'react-codemirror2';
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material-palenight.css';
-// import 'codemirror/theme/dracula.css';
-// import 'codemirror/theme/material-darker.css';
-// import 'codemirror/theme/material.css';
-// import 'codemirror/theme/ayu-dark.css';
 
 if (typeof navigator !== 'undefined') {
   require('codemirror/mode/xml/xml');
