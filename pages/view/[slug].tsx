@@ -5,27 +5,27 @@ import IFrameDisplay from '../../components/IFrameDisplay';
 import clientPromise from '../../lib/mongodb';
 
 interface Props {
-  htmlSrc: string;
-  cssSrc: string;
-  jsSrc: string;
+  html: string;
+  css: string;
+  js: string;
   title: string;
-  created: number;
+  // created: number;
 }
 
-const Page: React.FC<Props> = ({ htmlSrc, cssSrc, jsSrc, title, created }) => {
-  const creationDate = new Date(created);
-  const options: any = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  };
-  const displayDate = creationDate.toLocaleDateString(undefined, options);
+const Page: React.FC<Props> = ({ html, css, js, title }) => {
+  // const creationDate = new Date(created);
+  // const options: any = {
+  //   year: 'numeric',
+  //   month: 'long',
+  //   day: 'numeric',
+  // };
+  // const displayDate = creationDate.toLocaleDateString(undefined, options);
   return (
     <>
       <Controller
-        initialHTML={htmlSrc}
-        initialCSS={cssSrc}
-        initialJS={jsSrc}
+        initialHTML={html}
+        initialCSS={css}
+        initialJS={js}
         initialTitle={title}
       />
     </>
@@ -53,17 +53,17 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return { notFound: true };
   }
 
-  const { cssSrc, jsSrc, htmlSrc, title } = srcDocument;
+  const { css, js, html, title } = srcDocument;
   // get the UTC time of the creation date
-  const created = srcDocument.created?.getTime();
+  // const created = srcDocument.created?.getTime();
 
   return {
     props: {
-      cssSrc,
-      jsSrc,
-      htmlSrc,
+      css,
+      js,
+      html,
       title,
-      created,
+      // created,
     },
   };
 };
