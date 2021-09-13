@@ -13,7 +13,7 @@ const TopBar = ({ initialTitle }: TopBarProps) => {
   const shareButton = <Button primary>Share</Button>;
   return (
     <>
-      <NextSeo title={`Code Editor - ${title}`} />
+      <NextSeo title={title} />
       <Bar>
         <Title>{title}</Title>
         {/* The Popup component includes the share button*/}
