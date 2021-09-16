@@ -1,3 +1,4 @@
+import { ObjectId } from 'bson';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import insertDocument from '../../lib/insertDocument';
 
@@ -8,9 +9,14 @@ export const errors = {
   dbInsertFailed: 'DB insertion failed',
 };
 
+export interface AddDocumentResponseType {
+  error?: string;
+  id?: ObjectId;
+}
+
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse<AddDocumentResponseType>
 ) {
   if (req.method !== 'POST') {
     return res.status(405).send({ error: errors.onlyPost });
