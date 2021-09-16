@@ -61,7 +61,7 @@ const SharePopup = ({ handleClose }: SharePopupProps) => {
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
-    await addDocument();
+    if (!loading) await addDocument();
   }
 
   function resetDataAndHandleClose() {
