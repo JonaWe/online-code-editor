@@ -1,7 +1,6 @@
 import { ObjectId } from 'bson';
 import type { GetServerSideProps } from 'next';
 import Controller from '../../components/Controller';
-import IFrameDisplay from '../../components/IFrameDisplay';
 import clientPromise from '../../lib/mongodb';
 
 interface Props {
@@ -9,17 +8,9 @@ interface Props {
   css: string;
   js: string;
   title: string;
-  // created: number;
 }
 
 const Page: React.FC<Props> = ({ html, css, js, title }) => {
-  // const creationDate = new Date(created);
-  // const options: any = {
-  //   year: 'numeric',
-  //   month: 'long',
-  //   day: 'numeric',
-  // };
-  // const displayDate = creationDate.toLocaleDateString(undefined, options);
   return (
     <>
       <Controller
@@ -54,8 +45,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   const { css, js, html, title } = srcDocument;
-  // get the UTC time of the creation date
-  // const created = srcDocument.created?.getTime();
 
   return {
     props: {
@@ -63,7 +52,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       js,
       html,
       title,
-      // created,
     },
   };
 };
