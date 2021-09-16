@@ -16,13 +16,14 @@ const Controller = (props: ControllerProps) => {
   const [html, setHtml] = useState(props.initialHTML);
   const [css, setCss] = useState(props.initialCSS);
   const [js, setJs] = useState(props.initialJS);
+  const [title, setTitle] = useState(props.initialTitle);
 
   return (
     <EditorDocumentContextProvider
-      value={{ html, setHtml, css, setCss, js, setJs }}
+      value={{ html, setHtml, css, setCss, js, setJs, title, setTitle }}
     >
       <Wrapper>
-        <TopBar initialTitle={props.initialTitle} />
+        <TopBar />
         <EditorManager />
         <IFrameDisplay />
       </Wrapper>

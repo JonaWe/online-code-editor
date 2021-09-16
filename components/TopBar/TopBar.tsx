@@ -1,18 +1,14 @@
 import { AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
 import { NextSeo } from 'next-seo';
 import SharePopup from '../SharePopup';
 import { Bar, Title } from './TopBar.elements';
 import { Button } from '../UI';
 import useModalControls from '../../hooks/useModalControls';
+import { useEditorDocumentContext } from '../../context/editor-document-context';
 
-interface TopBarProps {
-  initialTitle: string;
-}
-
-const TopBar = ({ initialTitle }: TopBarProps) => {
-  const [title, setTitle] = useState(initialTitle);
+const TopBar = () => {
   const { isModalOpen, openModal, closeModal } = useModalControls();
+  const { title } = useEditorDocumentContext();
   return (
     <>
       <NextSeo title={title} />
@@ -28,13 +24,7 @@ const TopBar = ({ initialTitle }: TopBarProps) => {
           exitBeforeEnter={true}
           onExitComplete={() => null}
         >
-          {isModalOpen && (
-            <SharePopup
-              title={title}
-              setTitle={setTitle}
-              handleClose={closeModal}
-            />
-          )}
+          {isModalOpen && <SharePopup handleClose={closeModal} />}
         </AnimatePresence>
       </Bar>
     </>
