@@ -1,7 +1,7 @@
-import Popup from 'reactjs-popup';
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-export const PopupWrapper = styled.div`
+export const StyledModal = styled(motion.div)`
   display: grid;
   opacity: 100%;
   background-color: ${(props) => props.theme.colors.bgDark};
@@ -44,12 +44,6 @@ export const ButtonRow = styled.div`
   gap: 0.75em;
   justify-content: flex-end;
   margin-top: 1.5rem;
-`;
-
-export const StyledPopup = styled(Popup)`
-  &-overlay {
-    background: rgba(0, 0, 0, 0.9);
-  }
 `;
 
 interface InfoMessageProps {

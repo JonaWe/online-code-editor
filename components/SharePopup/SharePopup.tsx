@@ -2,26 +2,22 @@ import { useRouter } from 'next/router';
 import { Dispatch, FormEvent, SetStateAction, useState } from 'react';
 import { useEditorDocumentContext } from '../../context/editor-document-context';
 import { Button } from '../UI';
-import {
-  ButtonRow,
-  InfoMessage,
-  PopupWrapper,
-  StyledPopup,
-} from './SharePopup.elements';
+import Modal from './Modal';
+import { ButtonRow, InfoMessage, StyledModal } from './SharePopup.elements';
 
 interface SharePopupProps {
   title: string;
   setTitle: Dispatch<SetStateAction<string>>;
-  shareButton: JSX.Element;
+  handleClose(): void;
 }
 
-const SharePopup = ({ title, setTitle, shareButton }: SharePopupProps) => {
+const SharePopup = ({ title, setTitle, handleClose }: SharePopupProps) => {
   const { html, css, js } = useEditorDocumentContext();
   const [successful, setSuccessful] = useState<boolean | undefined>();
   const [errorMessage, setErrorMessage] = useState<string>('');
   const router = useRouter();
 
-  const submitHandler = (close: any) => {
+  const submitHandler = () => {
     return async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       if (successful !== undefined) return;
@@ -54,7 +50,7 @@ const SharePopup = ({ title, setTitle, shareButton }: SharePopupProps) => {
 
         setTimeout(async () => {
           // reset everything back to the initial state
-          close();
+          handleClose();
           setSuccessful(undefined);
           setErrorMessage('');
         }, 3000);
@@ -62,7 +58,7 @@ const SharePopup = ({ title, setTitle, shareButton }: SharePopupProps) => {
     };
   };
 
-  let infoMessage: JSX.Element;
+  let infoMessage: JSX.Element | undefined;
 
   if (successful === true) {
     infoMessage = (
@@ -77,37 +73,32 @@ const SharePopup = ({ title, setTitle, shareButton }: SharePopupProps) => {
   }
 
   return (
-    <StyledPopup modal trigger={shareButton}>
-      {(close: any) => (
-        <PopupWrapper>
-          <h2>Share this editor</h2>
-          <form onSubmit={submitHandler(close)}>
-            <label htmlFor="title">
-              Titel
-              <input
-                id="title"
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-                maxLength={32}
-                minLength={3}
-                required
-              />
-            </label>
+    <Modal handleClose={handleClose} styledModalDiv={StyledModal}>
+      <h2>Share this editor</h2>
+      <form onSubmit={submitHandler()}>
+        <label htmlFor="title">
+          Titel
+          <input
+            id="title"
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            maxLength={32}
+            minLength={3}
+            required
+          />
+        </label>
 
-            {infoMessage}
+        {infoMessage}
 
-            <ButtonRow>
-              <Button onClick={close}>Close</Button>
-              <Button primary type="submit">
-                Share
-              </Button>
-            </ButtonRow>
-          </form>
-        </PopupWrapper>
-      )}
-      {/* <div style={{ background: 'red' }}>Hey</div> */}
-    </StyledPopup>
+        <ButtonRow>
+          <Button onClick={handleClose}>Close</Button>
+          <Button primary type="submit">
+            Share
+          </Button>
+        </ButtonRow>
+      </form>
+    </Modal>
   );
 };
 
