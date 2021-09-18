@@ -98,7 +98,7 @@ const SharePopup = ({ handleClose }: SharePopupProps) => {
 
         <ButtonRow>
           <Button onClick={resetDataAndHandleClose}>Close</Button>
-          <Button primary loading={loading} type="submit">
+          <Button primary loading={loading} disabled={loading} type="submit">
             Share
           </Button>
         </ButtonRow>

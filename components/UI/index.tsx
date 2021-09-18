@@ -7,6 +7,7 @@ interface ButtonProps extends IButtonProps {
 
 interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   primary?: boolean;
+  disabled?: boolean;
 }
 
 const IButton = styled.button<IButtonProps>`
@@ -20,11 +21,14 @@ const IButton = styled.button<IButtonProps>`
   background-color: ${(props) =>
     props.primary ? props.theme.colors.bgPrimary : props.theme.colors.bgMedium};
 
+  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
+  opacity: ${(props) => props.disabled && '.65'};
+
   box-shadow: 5px 3px 5px 0 rgba(0, 0, 0, 0.1);
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
 
   &:hover {
-    filter: brightness(135%);
+    filter: ${(props) => !props.disabled && 'brightness(135%)'};
   }
 `;
 
